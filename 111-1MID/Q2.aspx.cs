@@ -15,7 +15,29 @@ namespace _111_1MID {
         };
 
         protected void Page_Load(object sender, EventArgs e) {
-
+            if (!IsPostBack)
+            {
+                for (int i = 0; i < s_City.Length; i++)
+                {
+                    ListItem C = new ListItem();
+                    C.Text = s_City[i];
+                    dpl_City.Items.Add(C);
+                }
+                country_List();
+            }
+        }
+        protected void country_List() {
+            int a = dpl_City.SelectedIndex;
+            dpl_Area.Items.Clear();
+            for (int s = 0; s < s_Area.GetLength(1); s++) {
+                ListItem C = new ListItem();
+                C.Text = C.Value = s_Area[a, s];
+                dpl_Area.Items.Add(C);
+            }
+        }
+        protected void dpl_City_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            country_List();
         }
     }
 }
